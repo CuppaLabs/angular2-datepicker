@@ -7,8 +7,5 @@ describe('angular2-datepicker App', () => {
     page = new Angular2DatepickerPage();
   });
 
-  it('should display message saying app works', () => {
-    page.navigateTo();
-    expect(page.getParagraphText()).toEqual('app works!');
-  });
+
 });
