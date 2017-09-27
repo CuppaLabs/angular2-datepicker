@@ -1,6 +1,9 @@
-import { Component, OnInit, forwardRef } from '@angular/core';
+import { Component, OnInit, forwardRef, Input } from '@angular/core';
+import { DatePipe } from '@angular/common';
+
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 import { Settings } from './interface';
+import * as moment from 'moment';
 
 export const DATEPICKER_CONTROL_VALUE_ACCESSOR: any = {
     provide: NG_VALUE_ACCESSOR,
@@ -16,6 +19,10 @@ export const DATEPICKER_CONTROL_VALUE_ACCESSOR: any = {
 })
 
 export class DatePicker implements OnInit, ControlValueAccessor {
+
+    @Input()
+    settings: Settings;
+
     selectedDate: String;
     date: Date;
     popover: Boolean = false;
@@ -32,10 +39,10 @@ export class DatePicker implements OnInit, ControlValueAccessor {
     monthsView:boolean = false;
     today:Date = new Date();
     
-    settings: Settings = {
+    defaultSettings: Settings = {
         bigBanner: true,
         timePicker: false,
-        format: 'dd/MM/yyyy',
+        format: 'dd-MMM-yyyy hh:mm a',
         cal_days_labels: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
         cal_full_days_lables: ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],
         cal_months_labels: ['January', 'February', 'March', 'April',
@@ -49,7 +56,7 @@ export class DatePicker implements OnInit, ControlValueAccessor {
 
     }
     ngOnInit(){
-
+        this.settings = Object.assign(this.defaultSettings, this.settings);
     }
     private onTouchedCallback: () =>  {};
     private onChangeCallback: (_: any) => {};
@@ -181,12 +188,13 @@ export class DatePicker implements OnInit, ControlValueAccessor {
                     }
                     this.date.setMinutes(this.minValue);
                 }
+                this.date = new Date(this.date);
                 this.timeView = !this.timeView;
             }
      setDay(evt:any){
                 if(evt.target.innerHTML){
                   var selectedDay = parseInt(evt.target.innerHTML);
-                  this.date.setDate(selectedDay);  
+                  this.date = new Date(this.date.setDate(selectedDay));  
                   console.log(this.date);
                   this.onChangeCallback(this.date.toString());
                   this.popover = false;
@@ -195,14 +203,14 @@ export class DatePicker implements OnInit, ControlValueAccessor {
     setYear(evt:any){
                   console.log( evt.target );
                   var selectedYear = parseInt(evt.target.getAttribute('id'));
-                  this.date.setFullYear(selectedYear); 
+                  this.date = new Date(this.date.setFullYear(selectedYear)); 
                    this.yearView = !this.yearView;
                    this.generateDays();
             }
     setMonth(evt:any){
                 if(evt.target.getAttribute('id')){
                  var selectedMonth = this.settings.cal_months_labels_short.indexOf(evt.target.getAttribute('id'));
-                   this.date.setMonth(selectedMonth);
+                   this.date = new Date(this.date.setMonth(selectedMonth));
                    this.monthsView = !this.monthsView;
                    this.generateDays();
                 }
@@ -221,6 +229,7 @@ export class DatePicker implements OnInit, ControlValueAccessor {
                     }
                     this.date.setMonth(this.date.getMonth() - 1);
                 }
+                 this.date = new Date(this.date);
                  this.generateDays();
             }
      nextMonth(e:any){
@@ -238,6 +247,7 @@ export class DatePicker implements OnInit, ControlValueAccessor {
                     this.date.setMonth(this.date.getMonth() + 1);
                     
                 }
+                this.date = new Date(this.date);
                 this.generateDays();
             }
        onChange(evt:any){

@@ -20,7 +20,7 @@ webpackEmptyAsyncContext.id = "../../../../../src/$$_gendir lazy recursive";
 /***/ "../../../../../src/app/angular2-datepicker/datepicker.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"winkel-calendar\">\r\n    <input type=\"hidden\" class=\"wc-input\" value=\"{{date}}\">\r\n    <div class=\"wc-date-container\" (click)=\"popover = !popover\">\r\n        <span>{{date.toString() | date: settings.format}}</span>\r\n        <i class=\"fa fa-calendar\"></i>\r\n    </div>\r\n    <div class=\"wc-date-popover\" [ngClass]=\"{'banner-true': settings.bigBanner == true}\" [hidden]=\"!popover\">\r\n        <div class=\"wc-banner\" *ngIf=\"settings.bigBanner\">\r\n            <div class=\"wc-day-row\">{{date.toString() | date: 'EEEE'}}</div>\r\n            <div class=\"wc-date-row\">{{date.toString() | date: 'dd'}}</div>\r\n            <div class=\"wc-my-sec\">\r\n                <div class=\"wc-month-row\">\r\n                    <div>{{date.toString() | date: 'MMMM'}}</div>\r\n                </div>\r\n                <div class=\"wc-year-row\">\r\n                    <div>{{date.toString() | date: 'yyyy'}}</div>\r\n                </div>\r\n            </div>\r\n            <div class=\"wc-time-sec ng-scope\" ng-click=\"toggleTimeView()\">\r\n                                <div *ngIf=\"timePicker\" class=\"time\" (click)=\"timeView = !timeView\">\r\n                                    {{date.toString() | date: 'hh'}} : {{date.toString() | date: 'mm'}} {{date.toString() | date: 'a'}} <span class=\"fa fa-clock-o\"></span>\r\n                                </div>\r\n                            </div>\r\n\r\n        </div>\r\n        <div class=\"wc-details\">\r\n            <i class=\"wc-prev fa fa-angle-left\" (click)=\"prevMonth($event)\"></i>\r\n            <div class=\"month-year\" *ngIf=\"settings.bigBanner\" (click)=\"toggleMonthView()\">{{date.toString() | date: 'MMMM'}}\r\n                <!-- <i ng-show=\"!monthsView\" class=\"fa fa-arrow-down\"></i>\r\n                                 <i ng-show=\"monthsView\" class=\"fa fa-arrow-up\"></i> -->\r\n            </div>\r\n            <div class=\"month-year\" *ngIf=\"!settings.bigBanner\" (click)=\"toggleMonthView()\">\r\n                {{date.toString() | date: 'MMMM'}}\r\n                <!--    <i ng-show=\"!monthsView\" class=\"fa fa-arrow-down\" (click)=\"toggleMonthView()\"></i>\r\n                                    <i ng-show=\"monthsView\" class=\"fa fa-arrow-up\" (click)=\"toggleMonthView()\"></i>  -->\r\n\r\n            </div>\r\n            <i class=\"wc-next fa fa-angle-right\" (click)=\"nextMonth($event)\"></i>\r\n        </div>\r\n        <div class=\"year-title\">\r\n            <div class=\"year-dropdown\" (click)=\"generateYearList()\">\r\n                {{date.toString() | date: 'yyyy'}}\r\n                <i *ngIf=\"!yearView\" class=\"fa fa-angle-down\"></i>\r\n                <i *ngIf=\"yearView\" class=\"fa fa-angle-up\"></i>\r\n            </div>\r\n        </div>\r\n        <table class=\"calendar-header\" [hidden]=\"yearView == true || monthsView == true\">\r\n            <tr>\r\n                <td class=\"calendar-header-day\">Su</td>\r\n                <td class=\"calendar-header-day\">Mo</td>\r\n                <td class=\"calendar-header-day\">Tu</td>\r\n                <td class=\"calendar-header-day\">We</td>\r\n                <td class=\"calendar-header-day\">Th</td>\r\n                <td class=\"calendar-header-day\">Fr</td>\r\n                <td class=\"calendar-header-day\">Sa</td>\r\n            </tr>\r\n        </table>\r\n       <div class=\"months-view\" [hidden]=\"!monthsView\" (click)=\"setMonth($event)\">\r\n            <span *ngFor=\"let month of settings.cal_months_labels_short\" [ngClass]=\"{'current-month': month == settings.cal_months_labels_short[date.getMonth()]}\" id=\"{{month}}\">{{month}}</span>\r\n        </div>\r\n        <div class=\"years-view\" *ngIf=\"yearView\">\r\n            <div class=\"fa fa-angle-left prev\" (click)=\"generateYearList('prev')\"></div>\r\n            <div class=\"fa fa-angle-right next\" (click)=\"generateYearList('next')\"></div>\r\n            <div class=\"years-list-view\" (click)=\"setYear($event)\">\r\n                <span *ngFor=\"let year of yearsList\" [ngClass]=\"{'current-year': year == date.getFullYear()}\" id=\"{{year}}\">{{year}}</span>\r\n            </div>\r\n        </div>\r\n       <div class=\"time-view\" [hidden]=\"!timeView\">\r\n            <div class=\"time\">\r\n                <div class=\"hour\">\r\n                    <span class=\"fa fa-plus inc-btn\" (click)=\"incHour()\"></span>\r\n                    <input type=\"text\" value=\"{{hourValue}}\" autofocus disabled/>\r\n                    <span class=\"fa fa-minus dec-btn\" (click)=\"decHour()\"></span>\r\n                </div>\r\n                <div class=\"time-divider\">:</div>\r\n                <div class=\"minutes\">\r\n                    <span class=\"fa fa-plus inc-btn\" (click)=\"incMinutes()\"></span>                    \r\n                    <input type=\"text\" value=\"{{minValue}}\" disabled/>\r\n                    <span class=\"fa fa-minus dec-btn\" (click)=\"decMinutes()\"></span>\r\n                </div>\r\n            </div>\r\n            <div class=\"meridian\">\r\n                <div class=\"cuppa-btn-group\">\r\n                    <button [ngClass]=\"{'active': timeViewMeridian == 'AM'}\" class=\"button\" ng-model=\"timeViewMeridian\" (click)=\"toggleMeridian('AM')\">AM</button>\r\n                    <button [ngClass]=\"{'active': timeViewMeridian == 'PM'}\" class=\"button\" ng-model=\"timeViewMeridian\" (click)=\"toggleMeridian('PM')\">PM</button>\r\n                </div>\r\n            </div>\r\n            <div class=\"time-view-btn\">\r\n                <button class=\"button\" (click)=\"setTimeView()\">Set Time</button>\r\n            </div>\r\n        </div>\r\n        <table class=\"calendar-days\" (click)=\"setDay($event);\" [hidden]=\"monthsView || yearView\">\r\n            <tr *ngFor=\"let week of monthDays\">\r\n                <td [ngClass]=\"{'calendar-day': day != null,'today': day == today.getDate() && date.getMonth() == today.getMonth() && date.getFullYear() == today.getFullYear(),'selected-day': day == date.getDate()}\"\r\n                    *ngFor=\"let day of week\">\r\n                    <span>{{day}}</span>\r\n                </td>\r\n\r\n            </tr>\r\n        </table>\r\n        <!-- <div ng-if=\"!bigBanner\">\r\n            <i class=\"fa fa-clock-o\" aria-hidden=\"true\" (click)=\"toggleTimeView()\"></i>\r\n        </div>-->\r\n        <div class=\"cal-util\">\r\n            <div class=\"ok\" (click)=\"done()\"><i class=\"fa fa-check\"></i>Done\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>"
+module.exports = "<div class=\"winkel-calendar\">\r\n    <input type=\"hidden\" class=\"wc-input\" value=\"{{date}}\">\r\n    <div class=\"wc-date-container\" (click)=\"popover = !popover\">\r\n        <span>{{date | date: settings.format}}</span>\r\n        <i class=\"fa fa-calendar\"></i>\r\n    </div>\r\n    <div class=\"wc-date-popover\" [ngClass]=\"{'banner-true': settings.bigBanner == true}\" [hidden]=\"!popover\">\r\n        <div class=\"wc-banner\" *ngIf=\"settings.bigBanner\">\r\n            <div class=\"wc-day-row\">{{date | date: 'EEEE'}}</div>\r\n            <div class=\"wc-date-row\">{{date | date: 'dd'}}</div>\r\n            <div class=\"wc-my-sec\">\r\n                <div class=\"wc-month-row\">\r\n                    <div>{{date | date: 'MMMM'}}</div>\r\n                </div>\r\n                <div class=\"wc-year-row\">\r\n                    <div>{{date | date: 'yyyy'}}</div>\r\n                </div>\r\n            </div>\r\n            <div class=\"wc-time-sec ng-scope\" ng-click=\"toggleTimeView()\">\r\n                                <div *ngIf=\"settings.timePicker\" class=\"time\" (click)=\"timeView = !timeView\">\r\n                                    {{date | date: 'hh'}} : {{date | date: 'mm'}} {{date | date: 'a'}} <span class=\"fa fa-clock-o\"></span>\r\n                                </div>\r\n                            </div>\r\n\r\n        </div>\r\n        <div class=\"wc-details\">\r\n            <i class=\"wc-prev fa fa-angle-left\" (click)=\"prevMonth($event)\"></i>\r\n            <div class=\"month-year\" *ngIf=\"settings.bigBanner\" (click)=\"toggleMonthView()\">{{date | date: 'MMMM'}}\r\n                <!-- <i ng-show=\"!monthsView\" class=\"fa fa-arrow-down\"></i>\r\n                                 <i ng-show=\"monthsView\" class=\"fa fa-arrow-up\"></i> -->\r\n            </div>\r\n            <div class=\"month-year\" *ngIf=\"!settings.bigBanner\" (click)=\"toggleMonthView()\">\r\n                {{date | date: 'MMMM'}}\r\n                <!--    <i ng-show=\"!monthsView\" class=\"fa fa-arrow-down\" (click)=\"toggleMonthView()\"></i>\r\n                                    <i ng-show=\"monthsView\" class=\"fa fa-arrow-up\" (click)=\"toggleMonthView()\"></i>  -->\r\n\r\n            </div>\r\n            <i class=\"wc-next fa fa-angle-right\" (click)=\"nextMonth($event)\"></i>\r\n        </div>\r\n        <div class=\"year-title\">\r\n            <div class=\"year-dropdown\" (click)=\"generateYearList()\">\r\n                {{date | date: 'yyyy'}}\r\n                <i *ngIf=\"!yearView\" class=\"fa fa-angle-down\"></i>\r\n                <i *ngIf=\"yearView\" class=\"fa fa-angle-up\"></i>\r\n            </div>\r\n        </div>\r\n        <table class=\"calendar-header\" [hidden]=\"yearView == true || monthsView == true\">\r\n            <tr>\r\n                <td class=\"calendar-header-day\">Su</td>\r\n                <td class=\"calendar-header-day\">Mo</td>\r\n                <td class=\"calendar-header-day\">Tu</td>\r\n                <td class=\"calendar-header-day\">We</td>\r\n                <td class=\"calendar-header-day\">Th</td>\r\n                <td class=\"calendar-header-day\">Fr</td>\r\n                <td class=\"calendar-header-day\">Sa</td>\r\n            </tr>\r\n        </table>\r\n       <div class=\"months-view\" [hidden]=\"!monthsView\" (click)=\"setMonth($event)\">\r\n            <span *ngFor=\"let month of settings.cal_months_labels_short\" [ngClass]=\"{'current-month': month == settings.cal_months_labels_short[date.getMonth()]}\" id=\"{{month}}\">{{month}}</span>\r\n        </div>\r\n        <div class=\"years-view\" *ngIf=\"yearView\">\r\n            <div class=\"fa fa-angle-left prev\" (click)=\"generateYearList('prev')\"></div>\r\n            <div class=\"fa fa-angle-right next\" (click)=\"generateYearList('next')\"></div>\r\n            <div class=\"years-list-view\" (click)=\"setYear($event)\">\r\n                <span *ngFor=\"let year of yearsList\" [ngClass]=\"{'current-year': year == date.getFullYear()}\" id=\"{{year}}\">{{year}}</span>\r\n            </div>\r\n        </div>\r\n       <div class=\"time-view\" [hidden]=\"!timeView\">\r\n            <div class=\"time\">\r\n                <div class=\"hour\">\r\n                    <span class=\"fa fa-plus inc-btn\" (click)=\"incHour()\"></span>\r\n                    <input type=\"text\" value=\"{{hourValue}}\" autofocus disabled/>\r\n                    <span class=\"fa fa-minus dec-btn\" (click)=\"decHour()\"></span>\r\n                </div>\r\n                <div class=\"time-divider\">:</div>\r\n                <div class=\"minutes\">\r\n                    <span class=\"fa fa-plus inc-btn\" (click)=\"incMinutes()\"></span>                    \r\n                    <input type=\"text\" value=\"{{minValue}}\" disabled/>\r\n                    <span class=\"fa fa-minus dec-btn\" (click)=\"decMinutes()\"></span>\r\n                </div>\r\n            </div>\r\n            <div class=\"meridian\">\r\n                <div class=\"cuppa-btn-group\">\r\n                    <button [ngClass]=\"{'active': timeViewMeridian == 'AM'}\" class=\"button\" ng-model=\"timeViewMeridian\" (click)=\"toggleMeridian('AM')\">AM</button>\r\n                    <button [ngClass]=\"{'active': timeViewMeridian == 'PM'}\" class=\"button\" ng-model=\"timeViewMeridian\" (click)=\"toggleMeridian('PM')\">PM</button>\r\n                </div>\r\n            </div>\r\n            <div class=\"time-view-btn\">\r\n                <button class=\"button\" (click)=\"setTimeView()\">Set Time</button>\r\n            </div>\r\n        </div>\r\n        <table class=\"calendar-days\" (click)=\"setDay($event);\" [hidden]=\"monthsView || yearView\">\r\n            <tr *ngFor=\"let week of monthDays\">\r\n                <td [ngClass]=\"{'calendar-day': day != null,'today': day == today.getDate() && date.getMonth() == today.getMonth() && date.getFullYear() == today.getFullYear(),'selected-day': day == date.getDate()}\"\r\n                    *ngFor=\"let day of week\">\r\n                    <span>{{day}}</span>\r\n                </td>\r\n\r\n            </tr>\r\n        </table>\r\n        <!-- <div ng-if=\"!bigBanner\">\r\n            <i class=\"fa fa-clock-o\" aria-hidden=\"true\" (click)=\"toggleTimeView()\"></i>\r\n        </div>-->\r\n        <div class=\"cal-util\">\r\n            <div class=\"ok\" (click)=\"done()\"><i class=\"fa fa-check\"></i>Done\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>"
 
 /***/ }),
 
@@ -50,6 +50,8 @@ module.exports = module.exports.toString();
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DatePicker; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_forms__ = __webpack_require__("../../../forms/@angular/forms.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__interface__ = __webpack_require__("../../../../../src/app/angular2-datepicker/interface.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__interface___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__interface__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -59,6 +61,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+
 
 
 var DATEPICKER_CONTROL_VALUE_ACCESSOR = {
@@ -80,10 +83,10 @@ var DatePicker = /** @class */ (function () {
         this.monthDays = [];
         this.monthsView = false;
         this.today = new Date();
-        this.settings = {
+        this.defaultSettings = {
             bigBanner: true,
             timePicker: false,
-            format: 'dd/MM/yyyy',
+            format: 'dd-MMM-yyyy hh:mm a',
             cal_days_labels: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
             cal_full_days_lables: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
             cal_months_labels: ['January', 'February', 'March', 'April',
@@ -95,6 +98,7 @@ var DatePicker = /** @class */ (function () {
         };
     }
     DatePicker.prototype.ngOnInit = function () {
+        this.settings = Object.assign(this.defaultSettings, this.settings);
     };
     DatePicker.prototype.writeValue = function (value) {
         if (value !== undefined && value !== null) {
@@ -221,12 +225,13 @@ var DatePicker = /** @class */ (function () {
             }
             this.date.setMinutes(this.minValue);
         }
+        this.date = new Date(this.date);
         this.timeView = !this.timeView;
     };
     DatePicker.prototype.setDay = function (evt) {
         if (evt.target.innerHTML) {
             var selectedDay = parseInt(evt.target.innerHTML);
-            this.date.setDate(selectedDay);
+            this.date = new Date(this.date.setDate(selectedDay));
             console.log(this.date);
             this.onChangeCallback(this.date.toString());
             this.popover = false;
@@ -235,14 +240,14 @@ var DatePicker = /** @class */ (function () {
     DatePicker.prototype.setYear = function (evt) {
         console.log(evt.target);
         var selectedYear = parseInt(evt.target.getAttribute('id'));
-        this.date.setFullYear(selectedYear);
+        this.date = new Date(this.date.setFullYear(selectedYear));
         this.yearView = !this.yearView;
         this.generateDays();
     };
     DatePicker.prototype.setMonth = function (evt) {
         if (evt.target.getAttribute('id')) {
             var selectedMonth = this.settings.cal_months_labels_short.indexOf(evt.target.getAttribute('id'));
-            this.date.setMonth(selectedMonth);
+            this.date = new Date(this.date.setMonth(selectedMonth));
             this.monthsView = !this.monthsView;
             this.generateDays();
         }
@@ -262,6 +267,7 @@ var DatePicker = /** @class */ (function () {
             }
             this.date.setMonth(this.date.getMonth() - 1);
         }
+        this.date = new Date(this.date);
         this.generateDays();
     };
     DatePicker.prototype.nextMonth = function (e) {
@@ -279,6 +285,7 @@ var DatePicker = /** @class */ (function () {
             }
             this.date.setMonth(this.date.getMonth() + 1);
         }
+        this.date = new Date(this.date);
         this.generateDays();
     };
     DatePicker.prototype.onChange = function (evt) {
@@ -312,6 +319,10 @@ var DatePicker = /** @class */ (function () {
         this.onChangeCallback(this.date.toString());
         this.popover = false;
     };
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["E" /* Input */])(),
+        __metadata("design:type", typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__interface__["Settings"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__interface__["Settings"]) === "function" && _a || Object)
+    ], DatePicker.prototype, "settings", void 0);
     DatePicker = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
             selector: 'angular2-date-picker',
@@ -322,6 +333,7 @@ var DatePicker = /** @class */ (function () {
         __metadata("design:paramtypes", [])
     ], DatePicker);
     return DatePicker;
+    var _a;
 }());
 
 //# sourceMappingURL=datepicker.component.js.map
@@ -362,6 +374,13 @@ var DatePickerModule = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "../../../../../src/app/angular2-datepicker/interface.ts":
+/***/ (function(module, exports) {
+
+//# sourceMappingURL=interface.js.map
+
+/***/ }),
+
 /***/ "../../../../../src/app/app.component.css":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -383,7 +402,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/app.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div style=\"width: 200px; margin: 0px auto;\"> \n    <h2>{{date | date: 'dd/MM/yyyy hh:mm'}}</h2>\n<angular2-date-picker [(ngModel)]=\"date\"></angular2-date-picker>\n</div>\n"
+module.exports = "<div style=\"width: 200px; margin: 0px auto;\"> \n    <h2>{{date | date: 'dd/MM/yyyy hh:mm a'}}</h2>\n<angular2-date-picker [(ngModel)]=\"date\" [settings]=\"settings\"></angular2-date-picker>\n</div>\n"
 
 /***/ }),
 
@@ -406,7 +425,12 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var AppComponent = /** @class */ (function () {
     function AppComponent() {
         this.title = 'app works!';
-        this.date = '10/10/2017 6:10';
+        this.date = new Date();
+        this.settings = {
+            bigBanner: false,
+            timePicker: false,
+            format: 'dd-MM-yyyy'
+        };
         this.basicExampleList = [];
         this.basicExampleSelectedItems = [];
         this.basicExampleSettings = {};

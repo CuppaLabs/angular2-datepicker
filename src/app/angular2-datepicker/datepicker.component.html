@@ -1,36 +1,36 @@
 <div class="winkel-calendar">
     <input type="hidden" class="wc-input" value="{{date}}">
     <div class="wc-date-container" (click)="popover = !popover">
-        <span>{{date.toString() | date: settings.format}}</span>
+        <span>{{date | date: settings.format}}</span>
         <i class="fa fa-calendar"></i>
     </div>
     <div class="wc-date-popover" [ngClass]="{'banner-true': settings.bigBanner == true}" [hidden]="!popover">
         <div class="wc-banner" *ngIf="settings.bigBanner">
-            <div class="wc-day-row">{{date.toString() | date: 'EEEE'}}</div>
-            <div class="wc-date-row">{{date.toString() | date: 'dd'}}</div>
+            <div class="wc-day-row">{{date | date: 'EEEE'}}</div>
+            <div class="wc-date-row">{{date | date: 'dd'}}</div>
             <div class="wc-my-sec">
                 <div class="wc-month-row">
-                    <div>{{date.toString() | date: 'MMMM'}}</div>
+                    <div>{{date | date: 'MMMM'}}</div>
                 </div>
                 <div class="wc-year-row">
-                    <div>{{date.toString() | date: 'yyyy'}}</div>
+                    <div>{{date | date: 'yyyy'}}</div>
                 </div>
             </div>
             <div class="wc-time-sec ng-scope" ng-click="toggleTimeView()">
-                                <div *ngIf="timePicker" class="time" (click)="timeView = !timeView">
-                                    {{date.toString() | date: 'hh'}} : {{date.toString() | date: 'mm'}} {{date.toString() | date: 'a'}} <span class="fa fa-clock-o"></span>
+                                <div *ngIf="settings.timePicker" class="time" (click)="timeView = !timeView">
+                                    {{date | date: 'hh'}} : {{date | date: 'mm'}} {{date | date: 'a'}} <span class="fa fa-clock-o"></span>
                                 </div>
                             </div>
 
         </div>
         <div class="wc-details">
             <i class="wc-prev fa fa-angle-left" (click)="prevMonth($event)"></i>
-            <div class="month-year" *ngIf="settings.bigBanner" (click)="toggleMonthView()">{{date.toString() | date: 'MMMM'}}
+            <div class="month-year" *ngIf="settings.bigBanner" (click)="toggleMonthView()">{{date | date: 'MMMM'}}
                 <!-- <i ng-show="!monthsView" class="fa fa-arrow-down"></i>
                                  <i ng-show="monthsView" class="fa fa-arrow-up"></i> -->
             </div>
             <div class="month-year" *ngIf="!settings.bigBanner" (click)="toggleMonthView()">
-                {{date.toString() | date: 'MMMM'}}
+                {{date | date: 'MMMM'}}
                 <!--    <i ng-show="!monthsView" class="fa fa-arrow-down" (click)="toggleMonthView()"></i>
                                     <i ng-show="monthsView" class="fa fa-arrow-up" (click)="toggleMonthView()"></i>  -->
 
@@ -39,7 +39,7 @@
         </div>
         <div class="year-title">
             <div class="year-dropdown" (click)="generateYearList()">
-                {{date.toString() | date: 'yyyy'}}
+                {{date | date: 'yyyy'}}
                 <i *ngIf="!yearView" class="fa fa-angle-down"></i>
                 <i *ngIf="yearView" class="fa fa-angle-up"></i>
             </div>

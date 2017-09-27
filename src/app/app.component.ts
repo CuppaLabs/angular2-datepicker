@@ -7,7 +7,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AppComponent implements OnInit {
   title = 'app works!';
-  date: String = '10/10/2017 6:10';
+  date: Date = new Date();
+  settings = {
+        bigBanner: false,
+        timePicker: false,
+        format: 'dd-MM-yyyy'
+    }
   basicExampleList = [];
   basicExampleSelectedItems = [];
   basicExampleSettings = {};
