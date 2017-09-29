@@ -40,6 +40,7 @@ export class DatePicker implements OnInit, ControlValueAccessor {
     today:Date = new Date();
     
     defaultSettings: Settings = {
+        defaultOpen: false,
         bigBanner: true,
         timePicker: false,
         format: 'dd-MMM-yyyy hh:mm a',
@@ -57,6 +58,9 @@ export class DatePicker implements OnInit, ControlValueAccessor {
     }
     ngOnInit(){
         this.settings = Object.assign(this.defaultSettings, this.settings);
+        if(this.settings.defaultOpen){
+            this.popover = true;
+        }
     }
     private onTouchedCallback: () =>  {};
     private onChangeCallback: (_: any) => {};

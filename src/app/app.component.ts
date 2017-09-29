@@ -1,24 +1,42 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit  } from '@angular/core';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css','./appstyles.scss']
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, AfterViewInit  {
   title = 'app works!';
   date: Date = new Date();
   settings = {
-        bigBanner: false,
-        timePicker: false,
-        format: 'dd-MM-yyyy'
+        bigBanner: true,
+        timePicker: true,
+        format: 'dd-MM-yyyy',
+        defaultOpen: true
     }
+  adSettings: any = {
+    client:"ca-pub-4525567075133342",
+    slot:"2263435109"
+  };
+  ad2settings: any = {
+    client:"ca-pub-4525567075133342",
+    slot:"8850561506"
+  }
   basicExampleList = [];
   basicExampleSelectedItems = [];
   basicExampleSettings = {};
   constructor(){
     
   }
+  ngAfterViewInit() {
+         setTimeout(()=>{
+          try{
+            (window['adsbygoogle'] = window['adsbygoogle'] || []).push({});
+          }catch(e){
+            console.error("error");
+          }
+        },0);
+     }     
    ngOnInit(){
   this.basicExampleList = [
                           {"id":1,"itemName":"India"},

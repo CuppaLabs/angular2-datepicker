@@ -1,5 +1,12 @@
 webpackJsonp(["styles"],{
 
+/***/ "../../../../../src/assets/images/sand-background.jpg":
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "sand-background.59b508c937c4f26a1239.jpg";
+
+/***/ }),
+
 /***/ "../../../../../src/styles.css":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -62,7 +69,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "/* You can add global styles to this file, and also import other style files */\n", ""]);
+exports.push([module.i, "/* You can add global styles to this file, and also import other style files */\nbody {\n  padding-top: 3.5rem;\n  background: url(" + __webpack_require__("../../../../../src/assets/images/sand-background.jpg") + ");\n  font-size: 14px !important;\n}\n.navbar{\n    box-shadow: 0 0 4px rgba(0,0,0,.14), 0 1px 1px rgba(0,0,0,.28);\n    background: #fff;\n}\n.navbar-nav > .nav-item{\n    padding: 0px 5px;\n}\n.navbar-brand{\n    min-width: 200px;\n}\n.ad-sidebar{\n    right: 0 !important;\n    left: auto !important;\n    background: #fff;\n    max-width: 300px !important;\n    padding: 0px !important;\n}\n.component-title{\n    padding: 0px !important;\n    font-size: 24px;\n    color: #000;\n    font-weight: 600;\n    margin-right: 15px;\n    line-height: 30px;\n}\n.fixed-top{\n    z-index: 99999 !important;\n}", ""]);
 
 // exports
 

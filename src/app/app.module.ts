@@ -4,10 +4,12 @@ import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { DatePickerModule } from './angular2-datepicker/datepicker.module';
+import { AdsenseComponent } from './adsense.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    AdsenseComponent
       ],
   imports: [
     DatePickerModule,
